@@ -7,21 +7,21 @@ export interface User {
 
 export interface LiveSession {
     id: string;
-    tittle: string;
+    title: string;
     description: string;
     instructor: string;
     startTime: string;
     endTime: string;
     image?: string;
-    status: "Upcoming" | "Live" | "completed";
+    status: "upcoming" | "live" | "completed";
 }
 
 export interface ActiveLesson {
     id: string;
     title: string;
     description: string;
+    category: string;
     icon: string;
-    color: string;
 }
 
 export interface StudentAnalytics {
