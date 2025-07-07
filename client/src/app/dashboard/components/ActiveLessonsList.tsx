@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/Card';
 import { LiveSession } from '@/types';
+import Image from 'next/image';
 
 
 interface ActiveLessonsListProps {
@@ -23,16 +24,13 @@ export const ActiveLessonsList: React.FC<ActiveLessonsListProps> = ({ lessons })
               key={lesson._id}
               className="flex items-center border-b border-gray-200 py-4"
             >
-              <img
-                src={`/assets/icons/${lesson.category.name}.svg`}
-                alt={lesson.category.name}
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = '/assets/icons/default.svg';
-                }}
-                className="w-8 h-8 object-contain"
-              />
-
+              <div className="w-16 h-16 min-w-[3rem] rounded-full bg-primary flex items-center justify-center overflow-hidden mr-4">
+                <Image
+                  src={`/assets/icons/${lesson.category.name}.svg`}
+                  alt="/assets/icons/research.svg"
+                  className="w-8 h-8 object-contain"
+                />
+              </div>
 
               <div className="flex-1 flex flex-col justify-center">
                 <h4 className="font-medium text-gray-900">
