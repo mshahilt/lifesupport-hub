@@ -5,15 +5,16 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Card } from '@/components/ui/Card';
 import { Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 
 export const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    email: 'manmadhannaras@gmail.com',
+    email: '',
     password: '',
     rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState(false);
-
+  const { login, loading, error } = useAuth();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -22,29 +23,33 @@ export const LoginForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // login here
     console.log('Login data:', formData);
+
+      const success = await login(formData.email, formData.password);
+      if (success) {
+        console.log("success", success);
+        window.location.href = '/dashboard';
+      }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
-          <div>
-            <div className="text-blue-600 font-bold text-2xl mb-8">
-              life support<br />
-              <span className="text-lg">learning</span>
-            </div>
-            
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              Hai, Welcome back
-            </h2>
-            <p className="text-gray-600 mb-8">
-              Enter your credentials to login your account
-            </p>
-          </div>
+     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gray-50 relative max-h-screen">
+      {/* Logo */}
+      <div className="absolute top-6 left-6">
+        <img src="/assets/logo.svg" alt="Logo" width={180} height={50} />
+      </div>
+
+      {/* Form Section */}
+      <div className="flex items-center justify-center px-6 py-12">
+        <div className="w-full max-w-md mt-6">
+          <h2 className="text-4xl font-semibold text-gray-900 mb-2 text-center">
+            Hoi, Welcome back
+          </h2>
+          <p className="text-gray-600 mb-8 text-center">
+            Enter your credentials to login your account
+          </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -57,7 +62,6 @@ export const LoginForm: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full"
               />
             </div>
 
@@ -72,57 +76,60 @@ export const LoginForm: React.FC = () => {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="w-full pr-10"
+                  className="text-[20px] tracking-widest pr-10"
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center gap-2 text-gray-600">
                 <input
                   type="checkbox"
                   name="rememberMe"
                   checked={formData.rememberMe}
                   onChange={handleChange}
-                  className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  className="accent-blue-600"
                 />
-                <span className="ml-2 text-sm text-gray-600">Remember Me</span>
+                Remember Me
               </label>
-              <a href="#" className="text-sm bg-primary hover:text-blue-500">
+              <a href="#" className="text-blue-600 hover:underline">
                 Forgot password?
               </a>
             </div>
 
             <Button
               type="submit"
-              className="w-full bg-primary hover:bg-blue-500"
-              size="lg"
+              className="w-full bg-primary hover:bg-blue-500 px-5 py-4 text-white text-lg font-bold rounded-md"
             >
               Login
             </Button>
-          </form>
-        </div>
-      </div>
 
-      <div className="hidden lg:block lg:w-1/2">
-        <div className="h-full bg-gradient-to-br from-blue-100 to-indigo-200 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-64 h-64 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-              <div className="w-48 h-48 bg-blue-100 rounded-full flex items-center justify-center">
-                <div className="text-4xl">👨‍⚕️</div>
-              </div>
-            </div>
-            <p className="text-gray-600 text-lg">Welcome back to your learning journey</p>
-          </div>
+
+          </form>
+
+          <p className="text-xs text-center text-gray-400 mt-10">
+            Powered by Duty Doctor <br />
+            © 2025 life support learning. All rights reserved.
+          </p>
         </div>
       </div>
+   <div className="hidden lg:flex items-center justify-center h-screen bg-white">
+    <div className="h-[90%] flex items-center justify-center">
+      <img
+        src="/assets/images/login-doctor.png"
+        alt="Doctor"
+        className="h-full w-auto object-contain"
+      />
+    </div>
+    </div>
+
     </div>
   );
 };

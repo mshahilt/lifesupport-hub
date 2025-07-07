@@ -13,6 +13,7 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ onMenuToggle, title, user }) => {
+  console.log("user :", user);
   return (
     <header className="bg-white h-24">
       <div className="flex items-center justify-between px-4 h-full">
@@ -35,7 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ onMenuToggle, title, user }) => 
           
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-              {user.avatar ? (
+              {user?.avatar ? (
                 <img 
                   src={user.avatar} 
                   alt={user.name} 

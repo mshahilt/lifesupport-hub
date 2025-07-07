@@ -1,6 +1,10 @@
-export const upcomingSession = {
-    id: "session-1",
+export const sampleUpcomingSession = {
+    _id: "session-1",
     title: "Real-Time Surgical Annotations Heart Surgery",
+    category: {
+      id: '123',
+      name: 'pediatrics'
+    },
     description:
       "Join this crucial heart surgery class and take a significant step in your medical career. Gain invaluable insights from experts—don't miss this opportunity!",
     instructor: "Dr. Manmadhan Naras",

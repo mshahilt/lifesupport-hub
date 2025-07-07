@@ -1,14 +1,21 @@
 export interface User {
-    id: string;
+    id?: string;
+    email: string;
     name: string;
     avatar?: string;
     role: string;
 }
 
+interface ICategory {
+    id?: string;
+    name: string;
+}
+
 export interface LiveSession {
-    id: string;
+    _id: string;
     title: string;
     description: string;
+    category: ICategory;
     instructor: string;
     startTime: string;
     endTime: string;
