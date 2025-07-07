@@ -7,6 +7,7 @@ import { useAuth } from '@/hooks/useAuth';
 import api from '@/lib/axios';
 import axios from 'axios';  
 import { base64ToBlob } from '@/lib/base64toBlob';
+import Image from 'next/image';
 
 
 export const RegisterForm: React.FC<{role:string}> = ({role}) => {
@@ -22,7 +23,7 @@ export const RegisterForm: React.FC<{role:string}> = ({role}) => {
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
 
-  const { register, loading, error } = useAuth();
+  const { register, loading } = useAuth();
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
@@ -130,7 +131,7 @@ export const RegisterForm: React.FC<{role:string}> = ({role}) => {
   return (
   <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gray-50 relative max-h-screen">
   <div className="absolute top-6 left-6 z-50">
-  <img
+  <Image
     src="/assets/logo.svg"
     alt="Logo"
     className="w-[180px] h-auto max-w-full"
@@ -151,7 +152,7 @@ export const RegisterForm: React.FC<{role:string}> = ({role}) => {
           <div className="relative">
             <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden border-2 border-gray-300">
               {avatarPreview ? (
-                <img
+                <Image
                   src={avatarPreview}
                   alt="Avatar preview"
                   className="w-full h-full object-cover"
@@ -259,7 +260,7 @@ export const RegisterForm: React.FC<{role:string}> = ({role}) => {
 
   <div className="hidden lg:flex items-center justify-center h-screen bg-white">
     <div className="h-[90%] flex items-center justify-center">
-      <img
+      <Image
         src="/assets/images/register-doctor.png"
         alt="Doctor"
         className="h-full w-auto object-contain"

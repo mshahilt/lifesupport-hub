@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LiveSession } from '@/types';
+import Image from 'next/image';
 
 type LiveSessionCardProps = Omit<LiveSession, 'endTime'> & {
   onStart?: () => void;
@@ -10,26 +11,12 @@ export const LiveSessionCard: React.FC<LiveSessionCardProps> = ({
   _id,
   title,
   instructor,
-  startTime,
   status,
   image,
   onStart,
   updateStatus
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
-
-  const getStatusColor = () => {
-    switch (status) {
-      case 'live':
-        return 'bg-red-500';
-      case 'upcoming':
-        return 'bg-yellow-500';
-      case 'completed':
-        return 'bg-green-500';
-      default:
-        return 'bg-gray-500';
-    }
-  };
 
   const handleStatusChange = (newStatus: "upcoming" | "live" | "completed") => {
     updateStatus(_id, newStatus);
@@ -55,7 +42,7 @@ export const LiveSessionCard: React.FC<LiveSessionCardProps> = ({
             className="p-1 bg-transparent rounded-full cursor-pointer"
             onClick={toggleTooltip}
           >
-            <img src="/assets/icons/link.svg" alt="Link" />
+            <Image src="/assets/icons/link.svg" alt="Link" />
           </button>
           
           {showTooltip && (

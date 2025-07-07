@@ -5,7 +5,7 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { UpcomingClassCard } from "./components/UpcomingClassCard";
 import { ActiveLessonsList } from "./components/ActiveLessonsList";
 import { StudentAnalyticsChart } from "./components/StudentAnalyticsChart";
-import { sampleUpcomingSession, activeLessons, studentAnalytics } from "@/constants/sample/dashboard";
+import { sampleUpcomingSession, studentAnalytics } from "@/constants/sample/dashboard";
 import useLive from '@/hooks/useLive';
 import { LiveSession } from "@/types";
 
@@ -21,7 +21,7 @@ export default function DashboardPage() {
 }, [liveSessions]);
 
   const handleStartClass = () => {
-    console.log("Starting class...");
+    console.log("Starting class...",showModal);
   };
 
   const handleScheduleClass = () => {

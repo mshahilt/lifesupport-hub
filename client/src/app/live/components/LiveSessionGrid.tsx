@@ -1,6 +1,5 @@
 import React from 'react';
 import { LiveSessionCard } from './LiveSessionCard';
-import { Button } from '@/components/ui';
 import { LiveSession } from '@/types';
 import useLive from '@/hooks/useLive';
 

@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import api from '@/lib/axios';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Category {
   _id: string;

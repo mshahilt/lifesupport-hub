@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { LiveSession } from '@/types';
+import Image from 'next/image';
 
 type UpcomingClassCardProps = Omit<LiveSession, "endTime" | "status"> & {
     onStart: () => void;
@@ -12,8 +13,6 @@ type UpcomingClassCardProps = Omit<LiveSession, "endTime" | "status"> & {
 export const UpcomingClassCard: React.FC<UpcomingClassCardProps> = ({
   title,
   description,
-  instructor,
-  startTime,
   image,
   onStart,
   onSchedule,
@@ -49,8 +48,8 @@ export const UpcomingClassCard: React.FC<UpcomingClassCardProps> = ({
 
     <div className="w-full lg:w-1/2 flex items-end justify-end">
       <div className="h-full max-h-80">
-        <img
-          src={image}
+        <Image
+          src={image || "/assets/logo.png"}
           alt="Live Session"
           className="w-full h-full object-contain object-bottom"
         />

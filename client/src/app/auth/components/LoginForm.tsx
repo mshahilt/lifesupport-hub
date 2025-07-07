@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { Card } from '@/components/ui/Card';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
+import Image from 'next/image';
 
 export const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ export const LoginForm: React.FC = () => {
     rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState(false);
-  const { login, loading, error } = useAuth();
+  const { login } = useAuth();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     setFormData(prev => ({
@@ -38,7 +38,7 @@ export const LoginForm: React.FC = () => {
      <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-gray-50 relative max-h-screen">
       {/* Logo */}
       <div className="absolute top-6 left-6">
-        <img src="/assets/logo.svg" alt="Logo" width={180} height={50} />
+        <Image src="/assets/logo.svg" alt="Logo" width={180} height={50} />
       </div>
 
       {/* Form Section */}
@@ -122,7 +122,7 @@ export const LoginForm: React.FC = () => {
       </div>
    <div className="hidden lg:flex items-center justify-center h-screen bg-white">
     <div className="h-[90%] flex items-center justify-center">
-      <img
+      <Image
         src="/assets/images/login-doctor.png"
         alt="Doctor"
         className="h-full w-auto object-contain"

@@ -8,9 +8,10 @@ import useLive from '@/hooks/useLive';
 
 export default function LivePage() {
 
-    const {liveSessions,fetchLives, loading, error, addLiveSession} = useLive();
+    const {liveSessions, addLiveSession} = useLive();
     const [showCreateModal, setShowCreateModal] = useState(false);
-
+    
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCreateLive = (data: any) => {
     console.log("live data from page", data);
     addLiveSession(data);

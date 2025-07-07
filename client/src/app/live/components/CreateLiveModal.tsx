@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 'use client';
 
 import React, { useState } from 'react';
@@ -8,6 +10,7 @@ import useCategory from '@/hooks/useCategory';
 import { base64ToBlob } from '@/lib/base64toBlob';
 import api from '@/lib/axios';
 import axios from 'axios';
+import Image from 'next/image';
 
 interface CreateLiveModalProps {
   isOpen: boolean;
@@ -30,7 +33,7 @@ export const CreateLiveModal: React.FC<CreateLiveModalProps> = ({
     image: '',
   });
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const { categories, addCategory, refresh } = useCategory();
+  const { categories } = useCategory();
   const [showCategoryInput, setShowCategoryInput] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   
@@ -262,7 +265,7 @@ export const CreateLiveModal: React.FC<CreateLiveModalProps> = ({
           <label htmlFor="image-upload">
             <div className="bg-gray-100 rounded-lg p-8 text-center cursor-pointer hover:border-gray-400 transition">
               {imagePreview ? (
-                <img
+                <Image
                   src={imagePreview}
                   alt="Preview"
                   className="mx-auto h-32 object-contain"

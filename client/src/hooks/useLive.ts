@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import api from "@/lib/axios";
 import { LiveSession } from "@/types";
 import { useEffect, useState } from "react";

@@ -10,7 +10,7 @@ export const decodeJWT = (token: string): { id: string; email: string; role: str
       avatar: payload.avatar
     };
   } catch (error) {
-    console.error("Invalid token");
+    console.error("Invalid token",error);
     return null;
   }
 };

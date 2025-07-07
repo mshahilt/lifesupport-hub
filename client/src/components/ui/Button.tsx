@@ -1,4 +1,3 @@
-import react from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary' | 'outline';
@@ -12,8 +11,6 @@ export const Button: React.FC<ButtonProps> = ({
     size = 'md',
     children,
     className = '',
-    ...props
-    
 }) => {
   const baseClasses = 'font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2';
 
