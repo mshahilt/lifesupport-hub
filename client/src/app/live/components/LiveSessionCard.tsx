@@ -108,6 +108,7 @@ export const LiveSessionCard: React.FC<LiveSessionCardProps> = ({
 
         <div className="flex items-center justify-between mt-3">
           <span className="text-sm text-gray-600">Joined: 0</span>
+
           {status === 'upcoming' && (
             <button
               onClick={onStart}
@@ -116,7 +117,20 @@ export const LiveSessionCard: React.FC<LiveSessionCardProps> = ({
               Start Live
             </button>
           )}
+
+          {status === 'live' && (
+            <span className="text-sm font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full">
+              Live Now
+            </span>
+          )}
+
+          {status === 'completed' && (
+            <span className="text-sm font-semibold text-gray-600 bg-gray-200 px-3 py-1 rounded-full">
+              Completed
+            </span>
+          )}
         </div>
+
       </div>
     </div>
   );
